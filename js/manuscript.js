@@ -1,0 +1,10 @@
+(()=>{
+const get=k=>{try{return localStorage.getItem(k)}catch{return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
+const preferred=get('manuscript-theme');if(preferred==='dark'||(!preferred&&matchMedia('(prefers-color-scheme: dark)').matches))document.body.classList.add('dark');
+document.querySelectorAll('.theme-toggle').forEach(b=>b.addEventListener('click',()=>{document.body.classList.toggle('dark');set('manuscript-theme',document.body.classList.contains('dark')?'dark':'light')}));
+let size=Math.max(16,Math.min(26,Number(get('manuscript-size'))||18));const applySize=()=>document.documentElement.style.setProperty('--reader-size',size+'px');applySize();
+document.querySelectorAll('[data-size]').forEach(b=>b.addEventListener('click',()=>{size=Math.max(16,Math.min(26,size+Number(b.dataset.size)));applySize();set('manuscript-size',size)}));
+const reader=document.querySelector('.reading-page');if(reader){const bar=document.querySelector('.reading-progress');const update=()=>{const bottom=reader.offsetTop+reader.offsetHeight-innerHeight;bar.style.width=Math.max(0,Math.min(100,scrollY/Math.max(1,bottom)*100))+'%'};addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update();if(reader.dataset.chapter)set('manuscript-last-'+reader.dataset.book+'-'+reader.dataset.lang,location.pathname);}
+document.querySelectorAll('.resume-link').forEach(a=>{const p=get('manuscript-last-'+a.dataset.book+'-'+a.dataset.lang);const valid=[...document.querySelectorAll('.chapter-row')].find(c=>new URL(c.href).pathname===p);if(valid){a.href=valid.href;a.hidden=false}});
+document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button))});let shown=0;document.querySelectorAll('.post-row').forEach(row=>{row.hidden=button.dataset.filter!=='all'&&!row.dataset.category.split(',').includes(button.dataset.filter);if(!row.hidden)shown++});document.querySelector('.empty-state').hidden=shown>0}));
+})();

@@ -1,0 +1,9 @@
+Decorative asset credits
+
+Seigaiha.svg — Life of Riley (2014), public domain.
+Source: https://commons.wikimedia.org/wiki/File:Seigaiha.svg
+Original: https://upload.wikimedia.org/wikipedia/commons/2/28/Seigaiha.svg
+Stored unmodified in img/patterns/seigaiha.svg. Color and opacity are applied in CSS.
+
+ridges.svg — Original geometric mountain illustration created for this site.
+The subtle dot texture is drawn in CSS; no external paper texture is included.
