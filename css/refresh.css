@@ -21,3 +21,5 @@ body.dark{--paper:#1d1d28;--white:#292833;--ink:#efedf5;--muted:#aaa6b8;--line:#
 
 /* 小说列表：整个卡片可进入作品，语言按钮仍可单独选择。 */
 .book-card{position:relative}.book-card-link{position:absolute;inset:0;z-index:1;border-radius:inherit}.book-card-link:focus-visible{outline:3px solid #8c77b7;outline-offset:3px}.book-card .book-language-links{position:relative;z-index:2}.book-card .shelf-cover[href]{position:relative;z-index:2}
+
+.book-card .book-title-link{position:relative;z-index:2}.book-card .book-title-link:hover{text-decoration:underline;text-underline-offset:4px}
